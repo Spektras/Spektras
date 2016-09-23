@@ -1,0 +1,115 @@
+[skip navigation]
+[ASD Home][Lines Query][Levels Query][List of Spectra][Ground States and Ionization Energies][Bibliography][Help]	NIST Physical Measurement Laboratory
+NIST Atomic Spectra Database Lines Data
+Se (all spectra): 72 Lines of Data Found 
+
+Example of how to reference these results:
+Kramida, A., Ralchenko, Yu., Reader, J., and NIST ASD Team (2015). NIST Atomic Spectra Database (ver. 5.3), [Online]. Available: http://physics.nist.gov/asd [2016, September 3]. National Institute of Standards and Technology, Gaithersburg, MD. 
+BibTex Citation (new window)
+ 
+Wavelength range: 200 - 800 nm
+Wavelength in: vacuum below 200 nm, air between 200 and 2000 nm, vacuum above 2000 nm 
+Highest relative intensity: 600
+Query NIST Bibliographic Databases for
+Se (new window)
+Se Energy Levels
+Se Line Wavelengths and Classification
+Se Transition Probabilities
+-----------------------------------------------------------------------------------------------------------------------------
+Spectrum  |           Observed  |          Ritz    |  Rel. |    Aki    | Acc. |   Ei           Ek   |Type|    TP  |   Line  |
+          |          Wavelength |       Wavelength |  Int. |    s^-1   |      | (cm-1)       (cm-1) |    |   Ref. |   Ref.  |
+          |           Air (nm)  |        Air (nm)  |  (?)  |           |      |                     |    |        |         |
+-----------------------------------------------------------------------------------------------------------------------------
+          |                     |                  |       |           |      |                     |    |        |         |
+Se I      |           203.98    |                  |   500 |           |      |                     |    |        |  L3316  |
+Se III    |           205.75    |                  |   285 |           |      |                     |    |        |  L3524  |
+Se I      |           207.48    |                  |   500 |           |      |                     |    |        |  L3316  |
+Se IV     |           209.00    |                  |   220 |           |      |                     |    |        |   L710  |
+Se IV     |           213.66    |                  |   285 |           |      |                     |    |        |   L710  |
+          |                     |                  |       |           |      |                     |    |        |         |
+Se I      |           216.42    |                  |   500 |           |      |                     |    |        |  L3316  |
+Se IV     |           216.52    |                  |   160 |           |      |                     |    |        |   L710  |
+Se IV     |           216.66    |                  |   160 |           |      |                     |    |        |   L710  |
+Se I      |           233.28    |                  |   150 |           |      |                     |    |        |  L3316  |
+Se I      |           241.35    |                  |   600 |           |      |                     |    |        |  L3316  |
+          |                     |                  |       |           |      |                     |    |        |         |
+Se I      |           254.80    |                  |   300 |           |      |                     |    |        |  L3316  |
+Se IV     |           266.55    |                  |   360 |           |      |                     |    |        |   L710  |
+Se IV     |           272.43    |                  |   285 |           |      |                     |    |        |   L710  |
+Se III    |           276.72    |                  |   285 |           |      |                     |    |        |  L3524  |
+Se III    |           277.38    |                  |   220 |           |      |                     |    |        |  L3524  |
+          |                     |                  |       |           |      |                     |    |        |         |
+Se IV     |           295.16    |                  |   160 |           |      |                     |    |        |   L710  |
+Se II     |           303.87    |                  |   220 |           |      |                     |    |        |  L3276  |
+Se II     |           304.13    |                  |   220 |           |      |                     |    |        |  L3276  |
+Se III    |           337.98    |                  |   285 |           |      |                     |    |        |  L3478  |
+Se III    |           338.72    |                  |   450 |           |      |                     |    |        |  L3478  |
+          |                     |                  |       |           |      |                     |    |        |         |
+Se III    |           341.39    |                  |   450 |           |      |                     |    |        |  L3478  |
+Se III    |           342.84    |                  |   285 |           |      |                     |    |        |  L3478  |
+Se III    |           345.78    |                  |   450 |           |      |                     |    |        |  L3478  |
+Se III    |           354.36    |                  |   360 |           |      |                     |    |        |  L3478  |
+Se III    |           357.02    |                  |   285 |           |      |                     |    |        |  L3478  |
+          |                     |                  |       |           |      |                     |    |        |         |
+Se III    |           363.76    |                  |   450 |           |      |                     |    |        |  L3478  |
+Se III    |           371.17    |                  |   360 |           |      |                     |    |        |  L3478  |
+Se III    |           373.87    |                  |   450 |           |      |                     |    |        |  L3478  |
+Se III    |           374.30    |                  |   285 |           |      |                     |    |        |  L3524  |
+Se III    |           380.09    |                  |   450 |           |      |                     |    |        |  L3478  |
+          |                     |                  |       |           |      |                     |    |        |         |
+Se III    |           404.67    |                  |   360 |           |      |                     |    |        |  L3478  |
+Se II     |           407.02    |                  |   285 |           |      |                     |    |        |  L3276  |
+Se III    |           408.32    |                  |   220 |           |      |                     |    |        |  L3524  |
+Se III    |           416.91    |                  |   450 |           |      |                     |    |        |  L3524  |
+Se II     |           417.53    |                  |   360 |           |      |                     |    |        |  L3276  |
+          |                     |                  |       |           |      |                     |    |        |         |
+Se II     |           418.09    |                  |   450 |           |      |                     |    |        |  L3276  |
+Se I      |           432.87    |                  |   120 |           |      |                     |    |        |  L3316  |
+Se I      |           433.03    |                  |   100 |           |      |                     |    |        |  L3316  |
+Se II     |           438.29    |                  |   285 |           |      |                     |    |        |  L3276  |
+Se II     |           444.60    |                  |   285 |           |      |                     |    |        |  L3276  |
+          |                     |                  |       |           |      |                     |    |        |         |
+Se II     |           444.92    |                  |   220 |           |      |                     |    |        |  L3276  |
+Se II     |           446.76    |                  |   285 |           |      |                     |    |        |  L3276  |
+Se III    |           463.79    |                  |   220 |           |      |                     |    |        |  L3478  |
+Se I      |           473.08    |                  |   500 |           |      |                     |    |        |  L3316  |
+Se I      |           473.90    |                  |   400 |           |      |                     |    |        |  L3316  |
+          |                     |                  |       |           |      |                     |    |        |         |
+Se I      |           474.22    |                  |   300 |           |      |                     |    |        |  L3316  |
+Se II     |           484.06    |                  |   285 |           |      |                     |    |        |  L3276  |
+Se II     |           484.50    |                  |   360 |           |      |                     |    |        |  L3276  |
+Se II     |           522.75    |                  |   450 |           |      |                     |    |        |  L3276  |
+Se II     |           530.54    |                  |   360 |           |      |                     |    |        |  L3276  |
+          |                     |                  |       |           |      |                     |    |        |         |
+Se I      |           536.55    |                  |   100 |           |      |                     |    |        |  L3316  |
+Se I      |           536.99    |                  |   120 |           |      |                     |    |        |  L3316  |
+Se I      |           537.41    |                  |   110 |           |      |                     |    |        |  L3316  |
+Se II     |           552.24    |                  |   285 |           |      |                     |    |        |  L3276  |
+Se II     |           556.69    |                  |   285 |           |      |                     |    |        |  L3276  |
+          |                     |                  |       |           |      |                     |    |        |         |
+Se II     |           586.63    |                  |   285 |           |      |                     |    |        |  L3276  |
+Se II     |           605.60    |                  |   450 |           |      |                     |    |        |  L3276  |
+Se III    |           630.38    |                  |   285 |           |      |                     |    |        |  L3478  |
+Se I      |           632.56    |                  |   200 |           |      |                     |    |        |  L3316  |
+Se II     |           644.42    |                  |   360 |           |      |                     |    |        |  L3276  |
+          |                     |                  |       |           |      |                     |    |        |         |
+Se II     |           649.05    |                  |   285 |           |      |                     |    |        |  L3276  |
+Se II     |           653.50    |                  |   285 |           |      |                     |    |        |  L3276  |
+Se I      |           683.13    |                  |   150 |           |      |                     |    |        |  L3316  |
+Se I      |           699.0690  |                  |   120 |           |      |                     |    |        |  L1791  |
+Se I      |           699.1792  |                  |   100 |           |      |                     |    |        |  L1791  |
+          |                     |                  |       |           |      |                     |    |        |         |
+Se I      |           701.0809  |                  |   200 |           |      |                     |    |        |  L1791  |
+Se I      |           701.3875  |                  |   150 |           |      |                     |    |        |  L1791  |
+Se I      |           706.2065  |                  |   300 |           |      |                     |    |        |  L1791  |
+Se I      |           757.51    |                  |   200 |           |      |                     |    |        |  L3316  |
+Se I      |           758.34    |                  |   250 |           |      |                     |    |        |  L3316  |
+          |                     |                  |       |           |      |                     |    |        |         |
+Se I      |           759.22    |                  |   150 |           |      |                     |    |        |  L3316  |
+Se I      |           760.68    |                  |   120 |           |      |                     |    |        |  L3316  |
+-----------------------------------------------------------------------------------------------------------------------------
+Query time: 0.1 sec
+
+If you did not find the data you need, please inform the ASD Team.
+
+[ASD Home][Lines Query][Levels Query][List of Spectra][Ground States and Ionization Energies][Bibliography][Help]	NIST Physical Measurement Laboratory
