@@ -252,6 +252,8 @@ concentration_pm = [pm_C_C, pm_C_Na, pm_C_Mg, pm_C_Al, pm_C_Si, pm_C_P, pm_C_S, 
 concentration_dispersion = [dispersion_C_C, dispersion_C_Na, dispersion_C_Mg, dispersion_C_Al, dispersion_C_Si, dispersion_C_P, dispersion_C_S, dispersion_C_Cl, dispersion_C_K, dispersion_C_Ca, dispersion_C_Ti, dispersion_C_V, dispersion_C_Cr, dispersion_C_Mn, dispersion_C_Fe, dispersion_C_Co, dispersion_C_Ni, dispersion_C_Cu, dispersion_C_Zn, dispersion_C_Se, dispersion_C_Sr, dispersion_C_Mo, dispersion_C_Cd, dispersion_C_Pb, dispersion_C_U, dispersion_C_Be, dispersion_sum]
 concentration_relative = [C_C/C_sum,C_Na/C_sum,C_Mg/C_sum,C_Al/C_sum,C_Si/C_sum,C_P/C_sum,C_S/C_sum,C_Cl/C_sum,C_K/C_sum,C_Ca/C_sum,C_Ti/C_sum,C_V/C_sum,C_Cr/C_sum,C_Mn/C_sum,C_Fe/C_sum,C_Co/C_sum,C_Ni/C_sum,C_Cu/C_sum,C_Zn/C_sum,C_Se/C_sum,C_Sr/C_sum,C_Mo/C_sum,C_Cd/C_sum,C_Pb/C_sum,C_U/C_sum,C_Be/C_sum,1]
 concentration_sigma = np.sqrt((np.asarray(concentration_pm)**2+np.asarray(concentration_dispersion))/2)
+concentration_ratio = [C_Fe/C_Mg,C_Na/C_Mg,C_Na/C_Fe,C_Fe/C_Si,C_K,C_Ca,C_Fe/C_Ni,C_Fe/C_Co,C_Si/C_Al]
 np.savetxt('concentration.txt',concentration)
 np.savetxt('concetration_statistics.txt',concentration_sigma)
 np.savetxt('concentration_relative.txt',concentration_relative)
+np.savetxt('concentration_ratio.txt',concentration_ratio)
