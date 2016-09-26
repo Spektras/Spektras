@@ -7,6 +7,7 @@ from scipy.misc import factorial
 from mpl_toolkits.mplot3d import Axes3D
 from scipy.special import gamma
 from scipy.integrate import odeint
+from scipy import interpolate
 spectra = np.loadtxt('spectra.txt')
 temperature_SID = np.loadtxt('temperature_SID.txt')
 lambda_m_a = spectra[:,0]
@@ -80,14 +81,15 @@ Te = [T,T]
 fig3 = plt.figure()
 ax = fig3.add_subplot(111, projection='3d')
 ax.scatter(Te,DN,N, c='r')
-ax.set_xlabel('Temperature (K)')
+ax.set_xlabel('T (K)')
 ax.set_ylabel('dn/dT (1/cm3)')
-ax.set_zlabel('Electron density (1/cm3)')
+ax.set_zlabel('n(1/cm3)')
 fig3.savefig('Plasma_distribution.png')
 n_H = (10**12*dn)**(1/3)
 N_H = (10**12*(-dN))**(1/3)
 r_min = ds/n_H*1000
 r_max = 1/2*np.abs((1/len(s)*(2/3*r_min**2+1/3*(1000/(ds/n_H))/s**2))**(1/2))*1000
+r_H = (len(s)**2*ds**2*n_H+10**4*len(s)*ds**2-len(s)*n_H**2-2*10**8*n_H)/(len(s)**2*(ds*n_H**2-ds*n_H*N_H))
 r_f = 1/len(s)*(2/3*r_min**2+1/3*r_max**2)
 np.savetxt('a.txt',r_min)
 np.savetxt('b.txt',r_max)
@@ -95,21 +97,25 @@ np.savetxt('r_f.txt',r_f)
 R_MAX = [r_max,r_max]
 R_MIN = [r_min, -r_min]
 N1 = [n/10**5, n/10**5]
+N0 = max(N_H)
+R_max0 = r_max[np.asarray(np.where(N_H==max(N_H)),dtype='int')]
+R_min0 = r_min[np.asarray(np.where(r_min==min(r_min)),dtype='int')]
+R_H0 = r_H[np.asarray(np.where(N_H<10**2),dtype='int')]
 fig4 = plt.figure()
 ax = fig4.add_subplot(111, projection='3d')
-ax.scatter(R_MIN,R_MAX,N1, c='r')
+ax.scatter(r_min,r_max,n,c='r'),ax.plot_wireframe(r_min,r_max,n)
 ax.set_xlabel('a (m)')
 ax.set_ylabel('b (m)')
-ax.set_zlabel('Electron density yield (n/n0)')
+ax.set_zlabel('n (1/cm3)')
 fig4.savefig('Plasma_geometry(x).png')
 fig5 = plt.figure()
 ax = fig5.add_subplot(111, projection='3d')
-ax.scatter(R_MAX,R_MIN,N1, c='r')
-ax.set_xlabel('a (m)')
-ax.set_ylabel('b (m)')
-ax.set_zlabel('Electron density yield (n/n0)')
+ax.scatter(r_max,r_min,n,c='r'),ax.plot_wireframe(r_max,r_min,n)
+ax.set_xlabel('b (m)')
+ax.set_ylabel('a (m)')
+ax.set_zlabel('n (1/cm3)')
 fig5.savefig('Plasma_geometry(y).png')
-geometry = [r_min, r_max, dN]
+geometry = [r_min, r_max, r_H, dN]
 master1 = [lambda_m_nm, I, T]
 np.savetxt('master1.txt',master1)
 v_e = 4.19*10**7*T**1/2 #cm/s
@@ -134,3 +140,10 @@ plt.plot(T,s_Fe)
 plt.xlabel('Temperature (K)')
 plt.ylabel('Fluctuation scope (cm)')
 fig7.savefig('Iron_fluctuation.png')
+fig8 = plt.figure()
+ax = fig8.add_subplot(111, projection='3d')
+ax.scatter(r_min,r_max,r_H,c='r'),ax.plot_wireframe(r_min,r_max,r_H)
+ax.set_xlabel('a (m)')
+ax.set_ylabel('b (m)')
+ax.set_zlabel('H (m)')
+fig8.savefig('Plasma_geometry.png')
