@@ -4,6 +4,8 @@ import matplotlib.mlab as mlab
 import scipy.misc
 import math
 from scipy.misc import factorial
+from scipy.special import gamma,airy
+from scipy.integrate import odeint
 from mpl_toolkits.mplot3d import Axes3D
 ablation = np.loadtxt('ablace.spa')
 lambda_m_nm = ablation[:,0]
@@ -32,8 +34,34 @@ T0_1 = np.abs(np.log(1/(a+np.e)))
 b = T_min/(np.log(T_min-I*E*k_B))
 T1_1 = np.abs(T0_1*b)*scipy.misc.logsumexp(I)
 T = (np.abs(np.gradient(np.gradient(T1_1)))+T0)**2/(2*T0)
+T_n = np.nan_to_num(T)
+T_n[T_n>10000]=0
+T_n = max(T_n)
 dT = np.gradient(T)
-np.savetxt('temperature.txt',T)
+a = k1**(k1-1)/factorial(k1)*1/3*(9/16*(epsilon*k_B*np.e)*np.pi**-2*np.exp(-dT/(4*np.pi)))**k1+1
+b = a*16/9*epsilon**3*k_B**2*np.pi**2*lambda_De**(6/5)*np.exp(dT/2.241)/(np.e**6*22.41**2)
+n = (np.exp(-np.log(b*10**12)/20)*np.exp((b*10**12)/20))+np.exp((b*10**12)/20)
+dN = np.abs(np.gradient(n))
+np.savetxt('electron_density.txt',[n,dN])
+def lorentz(x, mu, a, fwhm):
+        gamma = fwhm/2.
+        return ((1./np.pi) * ((0.5*gamma)/((x - mu)**2 + (0.5*gamma)**2))) * a
+
+I0 = ablation[:,1]
+I_fit = 1/lorentz(lambda_m_nm,I0,10,(max(I0)-min(I0)))-min(1/lorentz(lambda_m_nm,I0,10,(max(I0)-min(I0))))
+T0 = (wien/lambda_m-mean(wien/lambda_m)+np.abs(min(wien/lambda_m-mean(wien/lambda_m)))) - (np.abs(wien/lambda_m-mean(wien/lambda_m))+(max(np.abs(wien/lambda_m-mean(wien/lambda_m)))-np.abs(wien/lambda_m-mean(wien/lambda_m))))+np.abs(min((wien/lambda_m-mean(wien/lambda_m)+np.abs(min(wien/lambda_m-mean(wien/lambda_m)))) - (np.abs(wien/lambda_m-mean(wien/lambda_m))+(max(np.abs(wien/lambda_m-mean(wien/lambda_m)))-np.abs(wien/lambda_m-mean(wien/lambda_m))))))
+E = h*c/lambda_m
+a = k1**(k1-1)/factorial(k1)*(1/((T_min*(E*k_B)**(T_min))-np.log(T_min)))**k1
+T0_1 = np.abs(np.log(1/(a+np.e)))
+b = T_min/(np.log(T_min-I*E*k_B))
+T1_1 = np.abs(T0_1*b)*scipy.misc.logsumexp(I)
+T = (np.sqrt(T1_1)+T0)**2/(2*max(T0))
+T[np.isinf(T)]=0
+T_i = max(T)
+dT = np.gradient(T)
+T_e = [T_n,T_i]
+np.savetxt('free_ionic_temperature.txt',T)
+np.savetxt('temperature',T_e)
 fig0 = plt.figure()
 plt.plot(lambda_m_nm,T)
 plt.xlabel('Wavelength (nm)')
@@ -46,18 +74,6 @@ plt.plot(T,I)
 plt.ylabel('Intensity (a.u.)')
 plt.xlabel('Temperature (K)')
 fig1.savefig('Temperature_fit.png')
-fig2 = plt.figure()
-ax = fig2.add_subplot(111, projection='3d')
-ax.scatter(lambda_m_nm,T,I, c='r')
-ax.set_xlabel('Wavelength (nm)')
-ax.set_ylabel('Temperature (K)')
-ax.set_zlabel('Intensity (a.u.)')
-fig2.savefig('Spectra_temperature.png')
-a = k1**(k1-1)/factorial(k1)*1/3*(9/16*(epsilon*k_B*np.e)*np.pi**-2*np.exp(-dT/(4*np.pi)))**k1+1
-b = a*16/9*epsilon**3*k_B**2*np.pi**2*lambda_De**(6/5)*np.exp(dT/2.241)/(np.e**6*22.41**2)
-n = (np.exp(-np.log(b*10**12)/20)*np.exp((b*10**12)/20))+np.exp((b*10**12)/20)
-dN = np.abs(np.gradient(n))
-np.savetxt('electron_density.txt',[n,dN])
 B = 1+0.1*np.log(I/10**-12)
 m_D = 1.76e-010
 h_0 = 10*(np.pi*B*1/(2+2*m_D))
@@ -70,10 +86,10 @@ DN = [(n+dN),(n-dN)]
 Te = [T,T]
 fig3 = plt.figure()
 ax = fig3.add_subplot(111, projection='3d')
-ax.scatter(Te,DN,N, c='r')
+ax.scatter(Te,N,DN, c='r')
 ax.set_xlabel('Temperature (K)')
 ax.set_ylabel('dn/dT (1/cm3)')
-ax.set_zlabel('Electron density (1/cm3)')
+ax.set_zlabel('n (1/cm3)')
 fig3.savefig('Plasma_distribution.png')
 n_H = (10**12*dn)**(1/3)
 N_H = (10**12*(-dN))**(1/3)
@@ -91,14 +107,14 @@ ax = fig4.add_subplot(111, projection='3d')
 ax.scatter(R_MIN,R_MAX,N1, c='r')
 ax.set_xlabel('a (m)')
 ax.set_ylabel('b (m)')
-ax.set_zlabel('Electron density yield (n/n0)')
+ax.set_zlabel('Yield of n/n0')
 fig4.savefig('Plasma_geometry(x).png')
 fig5 = plt.figure()
 ax = fig5.add_subplot(111, projection='3d')
 ax.scatter(R_MAX,R_MIN,N1, c='r')
-ax.set_xlabel('a (m)')
-ax.set_ylabel('b (m)')
-ax.set_zlabel('Electron density yield (n/n0)')
+ax.set_xlabel('b (m)')
+ax.set_ylabel('a (m)')
+ax.set_zlabel('Yield of n/n0')
 fig5.savefig('Plasma_geometry(y).png')
 geometry = [r_min, r_max, dN]
 master1 = [lambda_m_nm, I, T]
@@ -125,3 +141,9 @@ plt.plot(T,s_Fe)
 plt.xlabel('Temperature (K)')
 plt.ylabel('Fluctuation scope (cm)')
 fig7.savefig('Iron_fluctuation.png')
+fig8 = plt.figure()
+plt.plot(lambda_m_nm,I_fit)
+plt.ylabel('Intensity (a.u.)')
+plt.xlabel('Wavelength (nm)')
+fig8.savefig('_fit.png')
+np.savetxt('intensity_fit.txt',I_fit)
