@@ -53,6 +53,9 @@ T0_1 = np.abs(np.log(1/(a+np.e)))
 b = T_min/(np.log(T_min-I_lines*E*k_B))
 T1_1 = np.abs(T0_1*b)*scipy.misc.logsumexp(I_lines)
 T = (np.abs(np.gradient(np.gradient(T1_1)))+T0)**2/(2*T0)
+T_n = np.nan_to_num(T)
+T_n[T_n>5999]=0
+T_n = max(T_n)
 dT = np.gradient(T)
 def f(s,t):
 	return [t*s[1],s[0]]
@@ -243,6 +246,7 @@ b = T_min/(np.log(T_min-I_lines*E*k_B))
 T1_1 = np.abs(T0_1*b)*scipy.misc.logsumexp(I_lines)
 T = (np.sqrt(T1_1)+T0)**2/(2*max(T0))
 T[np.isinf(T)]=0
+T_i = max(T)
 dT = np.gradient(T)
 v_e = 4.19*10**7*T**1/2 #cm/s
 v_Fe = 9.79*10**5*(9.2703e-026/m_p)**1/2*T**1/2 # mean q velocity of iron ion
@@ -259,7 +263,6 @@ plt.xlabel('Temperature (K)')
 plt.ylabel('Fluctuation scope (cm)')
 fig1.savefig('Iron_fluctuation.png')
 lambda1_lines = lambda_lines*10**9
-np.savetxt('temperature.txt',T)
 fig2 = plt.figure()
 plt.plot(lambda_m_nm,T)
 plt.xlabel('Wavelength (nm)')
@@ -273,3 +276,5 @@ plt.ylabel('Intensity (a.u.)')
 plt.xlabel('Wavelength (nm)')
 fig3.savefig('_fit.png')
 np.savetxt('intensity_fit.txt',I_fit)
+T_e = [T_n,T_i]
+np.savetxt('temperature.txt',T_e)
